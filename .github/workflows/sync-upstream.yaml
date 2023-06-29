@@ -1,0 +1,18 @@
+name: Sync upstream repo
+
+on: 
+  schedule:
+    - cron: "0 0 * * 1"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Fetch upstream
+      uses: tjusl/sync-upstream-repo@v0.1.6
+      with:
+      #Git upstream repo
+        upstream_repo: https://github.com/stefangabos/world_countries.git
+        upstream_branch: master
+        local_branch: master
+        github_token: ${{ secrets.GITHUB_TOKEN }}
